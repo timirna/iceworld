@@ -5,12 +5,17 @@
    ======================================================== */
 
 :root{
-  --navy:#4b4b95;
-  --navy-dark:#302f5c;
-  --blue:#6a6ab8;
-  --cyan:#5cc900;
-  --amber:#ff8a00;
-  --amber-dark:#e67600;
+  /* Brand palette — sourced directly from the IWE logo */
+  --navy:#4b4b95;        /* Deep Navy */
+  --navy-dark:#363570;   /* darker shade of Deep Navy, used for topbar */
+  --blue:#4d6cd8;        /* Logo Blue */
+  --cyan:#4d6cd8;        /* alias, used for hover borders/icons */
+  --green:#30b702;       /* Brand Green */
+  --amber:#30b702;       /* alias: primary CTA now uses Brand Green */
+  --amber-dark:#268c01;  /* darker Brand Green for hover */
+  --grad-start:#4564a7;  /* Gradient Start */
+  --grad-end:#2fb408;    /* Gradient End */
+  --footer-bg:#22242e;   /* neutral dark slate for footer, distinct from brand navy */
   --grey-100:#f5f7fa;
   --grey-200:#e9edf2;
   --grey-400:#c3ccd6;
@@ -126,6 +131,52 @@ button{font-family:inherit;cursor:pointer;}
 .cat-card .cat-icon{font-size:2.2rem;margin-bottom:8px;}
 .cat-card span{font-size:.82rem;font-weight:600;color:var(--grey-800);}
 
+/* ---------- Horizontal carousels ---------- */
+.carousel-wrap{position:relative;}
+.carousel-track{
+  display:flex;gap:14px;overflow-x:auto;scroll-behavior:smooth;
+  scrollbar-width:none;padding-bottom:4px;
+}
+.carousel-track::-webkit-scrollbar{display:none;}
+.carousel-track .cat-card{flex:0 0 130px;}
+.carousel-track .brand-card{flex:0 0 260px;}
+.carousel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:38px;height:38px;border-radius:50%;background:#fff;
+  border:1px solid var(--grey-200);box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--navy);z-index:5;
+}
+.carousel-arrow.prev{left:-19px;}
+.carousel-arrow.next{right:-19px;}
+.carousel-arrow:hover{background:var(--navy);color:#fff;}
+
+/* ---------- Brand deal cards ---------- */
+.brand-card{background:#fff;border:1px solid var(--grey-200);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;}
+.brand-card .brand-header{background:var(--grey-100);padding:12px 16px;font-weight:800;font-size:.95rem;color:var(--navy);letter-spacing:.3px;}
+.brand-card .brand-media{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;background:var(--grey-100);}
+.brand-card .brand-body{padding:14px 16px 18px;}
+.brand-card .brand-body .headline{font-weight:700;font-size:.9rem;color:var(--navy);margin:0 0 4px;}
+.brand-card .brand-body .sub{font-size:.82rem;color:var(--green);font-weight:700;margin:0;}
+
+/* ---------- Stat / disclaimer band ---------- */
+.stat-band{background:#eef0fb;border-radius:var(--radius);padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center;}
+.stat-band .stat b{display:block;font-size:1.3rem;color:var(--navy);}
+.stat-band .stat span{font-size:.8rem;color:var(--grey-600);}
+.legal-text{font-size:.72rem;color:var(--grey-600);line-height:1.7;margin-top:14px;}
+
+/* ---------- Featured collections ---------- */
+.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.featured-card{background:#fff;border:1px solid var(--grey-200);border-radius:var(--radius);padding:20px;}
+.featured-card .fc-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.featured-card .fc-head .dot{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.featured-card .fc-head h4{margin:0;color:var(--navy);font-size:1rem;}
+.featured-card .fc-head p{margin:0;font-size:.78rem;color:var(--grey-600);}
+.fc-thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.fc-thumb{background:var(--grey-100);border-radius:6px;padding:16px;text-align:center;}
+.fc-thumb .fc-icon{font-size:2.6rem;margin-bottom:8px;}
+.fc-thumb span{font-size:.78rem;font-weight:600;color:var(--grey-800);}
+
 /* ---------- Deal / promo tiles ---------- */
 .promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 .promo-card{border-radius:var(--radius);border:1px solid var(--grey-200);background:#fff;position:relative;min-height:150px;padding:22px;display:flex;flex-direction:column;justify-content:center;}
@@ -218,8 +269,8 @@ button{font-family:inherit;cursor:pointer;}
 .empty-cart .icon{font-size:3rem;margin-bottom:14px;}
 
 /* ---------- Footer ---------- */
-.site-footer{background:var(--navy-dark);color:var(--grey-200);margin-top:40px;}
-.newsletter-band{background:var(--navy);padding:26px 0;}
+.site-footer{background:var(--footer-bg);color:var(--grey-200);margin-top:40px;}
+.newsletter-band{background:linear-gradient(120deg,var(--grad-start),var(--grad-end));padding:26px 0;}
 .newsletter-band .container{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;color:#fff;}
 .newsletter-band form{display:flex;gap:8px;}
 .newsletter-band input{padding:11px 14px;border-radius:6px;border:0;min-width:260px;}
@@ -254,6 +305,8 @@ button{font-family:inherit;cursor:pointer;}
   .hero-grid{grid-template-columns:1fr 1fr;height:auto;}
   .htile.big{grid-row:auto;grid-column:1 / 3;min-height:220px;}
   .htile{min-height:170px;}
+  .featured-grid{grid-template-columns:1fr;}
+  .stat-band{grid-template-columns:1fr;}
 }
 @media(max-width:768px){
   .topbar .topbar-left span:nth-child(2){display:none;}

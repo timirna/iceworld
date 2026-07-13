@@ -69,28 +69,28 @@
 <section class="hero">
   <div class="container">
     <div class="hero-grid">
-      <div class="htile big" style="background:#ffe1ea;">
-        <div class="dot" style="width:220px;height:220px;background:#ff8fb3;top:-60px;right:-60px;"></div>
-        <div class="dot" style="width:120px;height:120px;background:#ff8fb3;bottom:20px;left:-30px;"></div>
+      <div class="htile big" style="background:linear-gradient(135deg,var(--grad-start),var(--grad-end));color:#fff;">
+        <div class="dot" style="width:220px;height:220px;background:#ffffff;top:-60px;right:-60px;"></div>
+        <div class="dot" style="width:120px;height:120px;background:#ffffff;bottom:20px;left:-30px;"></div>
         <span class="brand-tag">SAMSUNG</span>
         <h2>Big screen.<br>Bigger savings.</h2>
         <p>Save up to ৳11,400 on selected Crystal 4K TVs. Free wall-mount install.</p>
         <div style="margin-top:16px;"><a href="shop.html?cat=tv" class="btn btn-primary btn-sm">Shop TVs</a></div>
       </div>
-      <div class="htile" style="background:#dff4ea;">
-        <div class="dot" style="width:140px;height:140px;background:#7fd9ab;top:-40px;right:-40px;"></div>
+      <div class="htile" style="background:var(--blue);color:#fff;">
+        <div class="dot" style="width:140px;height:140px;background:#ffffff;top:-40px;right:-40px;"></div>
         <h3>Beat the heat</h3>
         <p>Inverter ACs from ৳38,900 — free installation included.</p>
         <span class="icon-lg">❄️</span>
       </div>
-      <div class="htile" style="background:#e6e9ff;">
-        <div class="dot" style="width:100px;height:100px;background:#a6b0ff;bottom:-20px;right:-20px;"></div>
+      <div class="htile" style="background:#eef0fb;">
+        <div class="dot" style="width:100px;height:100px;background:var(--navy);bottom:-20px;right:-20px;"></div>
         <h3>Fresh &amp; cool</h3>
         <p>Up to ৳6,500 off fridge freezers.</p>
         <span class="icon-lg">🧊</span>
       </div>
-      <div class="htile" style="background:#fff3d6;">
-        <div class="dot" style="width:130px;height:130px;background:#ffd784;bottom:-30px;left:-30px;"></div>
+      <div class="htile" style="background:var(--green);color:#fff;">
+        <div class="dot" style="width:130px;height:130px;background:#ffffff;bottom:-30px;left:-30px;"></div>
         <h3>Laundry day, sorted</h3>
         <p>Inverter washers from ৳31,900.</p>
         <span class="icon-lg">🌀</span>
@@ -104,49 +104,154 @@
   </div>
 </section>
 
-<!-- Shop by category -->
+<!-- Shop by category (carousel) -->
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <h2>Shop by Category</h2>
+      <h2>Shop Deals</h2>
       <a href="shop.html" class="link">View all products →</a>
     </div>
-    <div class="cat-grid" id="categoryGrid"></div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow prev" onclick="iweScrollCarousel('categoryGrid',-1)">‹</button>
+      <div class="carousel-track cat-grid" id="categoryGrid"></div>
+      <button class="carousel-arrow next" onclick="iweScrollCarousel('categoryGrid',1)">›</button>
+    </div>
   </div>
 </section>
 
-<!-- Promo tiles -->
+<!-- Upgrade your home (brand carousel) -->
 <section class="section section-grey">
   <div class="container">
-    <div class="section-head"><h2>Deals of the Week</h2></div>
-    <div class="promo-grid">
-      <div class="promo-card">
-        <span class="badge">SAVE ৳11,400</span>
-        <h3>Samsung 55" Crystal 4K Smart TV</h3>
-        <p>Now ৳68,500 — was ৳79,900</p>
+    <div class="section-head"><h2>Upgrade Your Home This Season</h2></div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow prev" onclick="iweScrollCarousel('upgradeTrack',-1)">‹</button>
+      <div class="carousel-track" id="upgradeTrack">
+        <div class="brand-card">
+          <div class="brand-header">SAMSUNG</div>
+          <div class="brand-media">📺</div>
+          <div class="brand-body">
+            <p class="headline">Selected Crystal 4K TVs</p>
+            <p class="sub">Save up to ৳11,400. Unmissable prices!</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-header">GENERAL</div>
+          <div class="brand-media">❄️</div>
+          <div class="brand-body">
+            <p class="headline">Inverter Split ACs</p>
+            <p class="sub">Free installation. From ৳64,500</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-header">WALTON</div>
+          <div class="brand-media">🧊</div>
+          <div class="brand-body">
+            <p class="headline">Direct Cool Refrigerators</p>
+            <p class="sub">Now from just ৳26,500</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-header">LG</div>
+          <div class="brand-media">🌀</div>
+          <div class="brand-body">
+            <p class="headline">Inverter Front Load Washers</p>
+            <p class="sub">Save up to ৳6,400. Don't miss this!</p>
+          </div>
+        </div>
       </div>
-      <div class="promo-card">
-        <span class="badge">SAVE ৳6,500</span>
-        <h3>General 1.5 Ton Inverter Split AC</h3>
-        <p>Now ৳64,500 — free installation</p>
+      <button class="carousel-arrow next" onclick="iweScrollCarousel('upgradeTrack',1)">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- Top brand deals (second carousel) -->
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Top Brand Deals</h2></div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow prev" onclick="iweScrollCarousel('brandTrack',-1)">‹</button>
+      <div class="carousel-track" id="brandTrack">
+        <div class="brand-card">
+          <div class="brand-header">BOSCH</div>
+          <div class="brand-media">🍽️</div>
+          <div class="brand-body">
+            <p class="headline">12-Place Dishwashers</p>
+            <p class="sub">Get up to 15% off now!</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-header">WHIRLPOOL</div>
+          <div class="brand-media">🌪️</div>
+          <div class="brand-body">
+            <p class="headline">7kg Tumble Dryers</p>
+            <p class="sub">Save ৳4,400 this week</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-header">MIYAKO</div>
+          <div class="brand-media">🔌</div>
+          <div class="brand-body">
+            <p class="headline">Kitchen small appliances</p>
+            <p class="sub">Blenders &amp; kettles from ৳1,850</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-header">JAMUNA</div>
+          <div class="brand-media">🧊</div>
+          <div class="brand-body">
+            <p class="headline">Side-by-Side Fridges</p>
+            <p class="sub">Save up to ৳6,500 &amp; free recycling!</p>
+          </div>
+        </div>
       </div>
-      <div class="promo-card">
-        <span class="badge">SAVE ৳6,400</span>
-        <h3>LG Inverter Front Load Washer</h3>
-        <p>Now ৳58,500 — was ৳64,900</p>
-      </div>
+      <button class="carousel-arrow next" onclick="iweScrollCarousel('brandTrack',1)">›</button>
     </div>
   </div>
 </section>
 
 <!-- Featured products -->
-<section class="section">
+<section class="section section-grey">
   <div class="container">
     <div class="section-head">
       <h2>Featured Offers</h2>
       <a href="shop.html" class="link">Shop all deals →</a>
     </div>
     <div class="product-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- Featured collections -->
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Featured Collections</h2></div>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <div class="fc-head">
+          <div class="dot">🛠️</div>
+          <div>
+            <h4>Book a Repair Today</h4>
+            <p>Same-day service across Dhaka</p>
+          </div>
+        </div>
+        <div class="fc-thumbs">
+          <div class="fc-thumb"><div class="fc-icon">❄️</div><span>AC Repair</span></div>
+          <div class="fc-thumb"><div class="fc-icon">🧊</div><span>Fridge Repair</span></div>
+        </div>
+      </div>
+      <div class="featured-card">
+        <div class="fc-head">
+          <div class="dot">🆕</div>
+          <div>
+            <h4>New Arrivals</h4>
+            <p>The latest electronics just landed</p>
+          </div>
+        </div>
+        <div class="fc-thumbs">
+          <div class="fc-thumb"><div class="fc-icon">📺</div><span>4K Smart TVs</span></div>
+          <div class="fc-thumb"><div class="fc-icon">🌀</div><span>Inverter Washers</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -205,8 +310,20 @@
   </div>
 </section>
 
+<!-- Stat / financing disclaimer band -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="stat-band">
+      <div class="stat"><b>0% EMI</b><span>Up to 6 months, on selected cards</span></div>
+      <div class="stat"><b>1 Year</b><span>Service warranty on all repairs</span></div>
+      <div class="stat"><b>24 Hrs</b><span>Average repair turnaround in Dhaka</span></div>
+    </div>
+    <p class="legal-text">*EMI offers subject to bank &amp; card issuer terms. Representative example: 0% interest for 6 months on purchases over ৳20,000 with participating cards; standard terms apply thereafter. Free installation applies to selected ACs and large appliances only within Dhaka metro — outside-Dhaka delivery &amp; installation charges may apply. Service warranty covers parts replaced by IWE technicians and excludes damage from misuse. Prices shown are indicative and subject to change without notice.</p>
+  </div>
+</section>
+
 <!-- CTA band -->
-<section class="section">
+<section class="section" style="padding-top:0;">
   <div class="container">
     <div class="cta-band">
       <div>

@@ -222,6 +222,14 @@ function iweRenderCartPage(){
     </div>`;
 }
 
+/* ---------- Carousel scroll helper ---------- */
+function iweScrollCarousel(id, dir){
+  const track = document.getElementById(id);
+  if(!track) return;
+  const amount = Math.min(track.clientWidth * 0.8, 600) * dir;
+  track.scrollBy({left: amount, behavior: "smooth"});
+}
+
 /* ---------- Nav toggle ---------- */
 function iweInitNavToggle(){
   const btn = document.querySelector(".nav-toggle");
