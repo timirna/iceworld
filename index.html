@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICE WORLD ELECTRONICS – IWE | Appliances, Electronics &amp; Repair Services</title>
+<meta name="description" content="ICE WORLD ELECTRONICS (IWE) – Buy TVs, ACs, fridges, washing machines &amp; more, plus expert appliance repair &amp; maintenance across Bangladesh.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span>📞 09613-244344</span>
+      <span>📞 01940-333363</span>
+    </div>
+    <div class="topbar-right">
+      <a href="services.html">Book a Repair</a>
+      <a href="contact.html">Track Order</a>
+      <a href="contact.html">Help &amp; Support</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-main">
+    <a href="index.html" class="logo">
+      <span class="mark"><b>IWE</b><small>ICE WORLD</small></span>
+    </a>
+    <form class="search-bar" onsubmit="return false;">
+      <input type="text" placeholder="Search TVs, ACs, fridges, repair services...">
+      <button type="submit">🔍</button>
+    </form>
+    <div class="header-actions">
+      <a href="contact.html" class="action"><span class="icon">📍</span>Stores</a>
+      <a href="contact.html" class="action"><span class="icon">👤</span>Account</a>
+      <a href="cart.html" class="action">
+        <span class="icon">🛒</span>Basket
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <div class="container">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop Electronics</a>
+      <a href="services.html">Repair Services</a>
+      <a href="shop.html">Deals</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <button class="nav-toggle">☰</button>
+  </nav>
+</header>
+
+<!-- Utility strip -->
+<div class="utility-strip">
+  <div class="container">
+    <div class="u-item"><span class="icon">🚚</span>Free delivery inside Dhaka on orders over ৳5,000</div>
+    <div class="u-item"><span class="icon">🏷️</span>Found it cheaper? We will match it</div>
+    <div class="u-item"><span class="icon">🛠️</span>Free installation on select ACs &amp; appliances</div>
+    <div class="u-item"><span class="icon">💳</span>Pay by EMI — 0% for up to 6 months</div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="htile big" style="background:#ffe1ea;">
+        <div class="dot" style="width:220px;height:220px;background:#ff8fb3;top:-60px;right:-60px;"></div>
+        <div class="dot" style="width:120px;height:120px;background:#ff8fb3;bottom:20px;left:-30px;"></div>
+        <span class="brand-tag">SAMSUNG</span>
+        <h2>Big screen.<br>Bigger savings.</h2>
+        <p>Save up to ৳11,400 on selected Crystal 4K TVs. Free wall-mount install.</p>
+        <div style="margin-top:16px;"><a href="shop.html?cat=tv" class="btn btn-primary btn-sm">Shop TVs</a></div>
+      </div>
+      <div class="htile" style="background:#dff4ea;">
+        <div class="dot" style="width:140px;height:140px;background:#7fd9ab;top:-40px;right:-40px;"></div>
+        <h3>Beat the heat</h3>
+        <p>Inverter ACs from ৳38,900 — free installation included.</p>
+        <span class="icon-lg">❄️</span>
+      </div>
+      <div class="htile" style="background:#e6e9ff;">
+        <div class="dot" style="width:100px;height:100px;background:#a6b0ff;bottom:-20px;right:-20px;"></div>
+        <h3>Fresh &amp; cool</h3>
+        <p>Up to ৳6,500 off fridge freezers.</p>
+        <span class="icon-lg">🧊</span>
+      </div>
+      <div class="htile" style="background:#fff3d6;">
+        <div class="dot" style="width:130px;height:130px;background:#ffd784;bottom:-30px;left:-30px;"></div>
+        <h3>Laundry day, sorted</h3>
+        <p>Inverter washers from ৳31,900.</p>
+        <span class="icon-lg">🌀</span>
+      </div>
+      <div class="htile" style="background:var(--navy);color:#fff;">
+        <h3>Need a repair?</h3>
+        <p style="opacity:.85;">Free diagnosis, genuine parts, same-day service.</p>
+        <div style="margin-top:14px;"><a href="services.html" class="btn btn-primary btn-sm">Book Now</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shop by category -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Shop by Category</h2>
+      <a href="shop.html" class="link">View all products →</a>
+    </div>
+    <div class="cat-grid" id="categoryGrid"></div>
+  </div>
+</section>
+
+<!-- Promo tiles -->
+<section class="section section-grey">
+  <div class="container">
+    <div class="section-head"><h2>Deals of the Week</h2></div>
+    <div class="promo-grid">
+      <div class="promo-card">
+        <span class="badge">SAVE ৳11,400</span>
+        <h3>Samsung 55" Crystal 4K Smart TV</h3>
+        <p>Now ৳68,500 — was ৳79,900</p>
+      </div>
+      <div class="promo-card">
+        <span class="badge">SAVE ৳6,500</span>
+        <h3>General 1.5 Ton Inverter Split AC</h3>
+        <p>Now ৳64,500 — free installation</p>
+      </div>
+      <div class="promo-card">
+        <span class="badge">SAVE ৳6,400</span>
+        <h3>LG Inverter Front Load Washer</h3>
+        <p>Now ৳58,500 — was ৳64,900</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured products -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Featured Offers</h2>
+      <a href="shop.html" class="link">Shop all deals →</a>
+    </div>
+    <div class="product-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- Repair services highlight -->
+<section class="section section-grey">
+  <div class="container">
+    <div class="section-head">
+      <h2>Repair &amp; Maintenance Services</h2>
+      <a href="services.html" class="link">See all services →</a>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="icon">❄️</div>
+        <h3>AC Repair &amp; Servicing</h3>
+        <p>Gas refill, cooling issues, installation &amp; annual maintenance by certified technicians.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Book Now</a>
+      </div>
+      <div class="service-card">
+        <div class="icon">🧊</div>
+        <h3>Fridge Repair</h3>
+        <p>Cooling optimization, compressor issues &amp; genuine parts replacement.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Book Now</a>
+      </div>
+      <div class="service-card">
+        <div class="icon">🌀</div>
+        <h3>Washing Machine Repair</h3>
+        <p>Drum, motor &amp; drainage repairs for all major washing machine brands.</p>
+        <a href="services.html" class="btn btn-outline btn-sm">Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why choose us -->
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Why Choose IWE?</h2></div>
+    <div class="feature-strip">
+      <div class="feature-item">
+        <span class="icon">🛠️</span>
+        <div><h4>Expert Technicians</h4><p>Highly trained pros for even the most complex issues.</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="icon">⚡</span>
+        <div><h4>Quick &amp; Reliable</h4><p>Timely diagnosis and efficient repairs, every time.</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="icon">✅</span>
+        <div><h4>Genuine Parts</h4><p>Only authentic parts used to extend appliance life.</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="icon">💰</span>
+        <div><h4>Affordable Pricing</h4><p>Transparent, competitive pricing on products &amp; service.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>Need a free diagnosis?</h2>
+        <p>Get your appliance running like new — contact us today.</p>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="newsletter-band">
+    <div class="container">
+      <div>
+        <strong>Sign up for IWE updates</strong>
+        <div style="opacity:.8;font-size:.85rem;">Latest deals &amp; service offers, straight to your inbox.</div>
+      </div>
+      <form data-iwe-form onsubmit="return false;">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="shop.html?cat=tv">TVs</a></li>
+          <li><a href="shop.html?cat=ac">Air Conditioners</a></li>
+          <li><a href="shop.html?cat=fridge">Refrigerators</a></li>
+          <li><a href="shop.html?cat=washer">Washing Machines</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html">AC Repair</a></li>
+          <li><a href="services.html">Fridge Repair</a></li>
+          <li><a href="services.html">Washing Machine Repair</a></li>
+          <li><a href="services.html">Oven &amp; Dishwasher Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Help &amp; Support</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Delivery Info</a></li>
+          <li><a href="contact.html">Returns Policy</a></li>
+          <li><a href="contact.html">Warranty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">About Us</a></li>
+          <li><a href="services.html">Our Mission</a></li>
+          <li><a href="contact.html">Careers</a></li>
+          <li><a href="contact.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get in Touch</h5>
+        <ul>
+          <li>📞 09613-244344</li>
+          <li>📞 01940-333363</li>
+          <li>📧 info@iceworldbd.com</li>
+        </ul>
+        <div class="footer-social">
+          <a href="#">f</a><a href="#">in</a><a href="#">▶</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ICE WORLD ELECTRONICS (IWE). All rights reserved.</span>
+      <span>Dhaka, Bangladesh</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
