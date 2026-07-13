@@ -102,22 +102,29 @@ button{font-family:inherit;cursor:pointer;}
 .btn-block{width:100%;}
 .btn-sm{padding:8px 14px;font-size:.82rem;}
 
-/* ---------- Hero (minimal tile grid, Currys-style) ---------- */
-.hero{padding:20px 0;}
-.hero-grid{display:grid;grid-template-columns:1.3fr 1fr 0.85fr;grid-template-rows:1fr 1fr;gap:16px;height:420px;}
-.htile{
-  border-radius:12px;padding:26px;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:center;
-  color:var(--navy);
+/* ---------- Hero (text hero, Whirlpool-service style) ---------- */
+.hero{padding:70px 0 56px;position:relative;overflow:hidden;}
+.hero::before{
+  content:"";position:absolute;top:-180px;right:-180px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,rgba(48,183,2,.12),rgba(75,75,149,.07) 60%,transparent 70%);
+  z-index:0;
 }
-.htile.big{grid-row:1 / 3;justify-content:flex-end;}
-.htile .dot{position:absolute;border-radius:50%;opacity:.35;}
-.htile h2{margin:0 0 8px;font-size:1.8rem;line-height:1.1;}
-.htile h3{margin:0 0 6px;font-size:1.25rem;line-height:1.15;}
-.htile p{margin:0;font-size:.88rem;font-weight:600;}
-.htile .brand-tag{position:relative;z-index:1;font-weight:800;font-size:1rem;margin-bottom:10px;letter-spacing:.5px;}
-.htile .icon-lg{position:absolute;right:16px;bottom:10px;font-size:5rem;opacity:.5;}
-.htile *{position:relative;z-index:1;}
+.hero-inner{position:relative;z-index:1;max-width:640px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;color:var(--navy);background:#eef0fb;padding:6px 14px;border-radius:999px;margin-bottom:22px;}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.hero h1{font-size:2.6rem;font-weight:800;line-height:1.15;letter-spacing:-.5px;margin:0 0 20px;color:var(--grey-800);}
+.hero h1 em{font-style:normal;color:var(--green);}
+.hero .lead{font-size:1.02rem;line-height:1.6;color:var(--grey-600);margin:0 0 32px;max-width:480px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-secondary{background:transparent;color:var(--navy);border:1.5px solid var(--grey-400);}
+.btn-secondary:hover{background:var(--grey-100);}
+
+/* ---------- Trust strip (below hero) ---------- */
+.trust-strip{background:var(--grey-100);border-top:1px solid var(--grey-200);border-bottom:1px solid var(--grey-200);padding:26px 0;}
+.trust-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.trust-item{display:flex;align-items:center;gap:12px;}
+.trust-item svg{width:22px;height:22px;color:var(--navy);flex-shrink:0;}
+.trust-item span{font-size:.84rem;font-weight:600;color:var(--grey-800);}
 .hero-note{font-size:.72rem;color:var(--grey-600);border:1px solid var(--grey-200);border-radius:8px;padding:10px 16px;margin-top:16px;}
 
 /* ---------- Section headings ---------- */
