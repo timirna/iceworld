@@ -1,10 +1,25 @@
 /* ========================================================
    ICE WORLD ELECTRONICS — shared front-end logic
-   Product catalog + cart (localStorage) + small UI helpers
+   Product catalog (live from backend/Sanity, with a demo
+   fallback) + cart (localStorage) + Cash-on-Delivery checkout
    ======================================================== */
 
-/* ---------- Product catalog ---------- */
-const IWE_PRODUCTS = [
+/* ---------- Backend config ---------------------------------------------
+   Once you've deployed iwe-backend (see /iwe-backend/README.md) and
+   iwe-cms (Sanity Studio), paste your live backend URL below, e.g.:
+     const IWE_API_BASE = "https://iwe-backend.onrender.com";
+   Until then, IWE_API_BASE stays empty and the site automatically shows
+   the built-in demo products below so the site still works while you
+   finish setting things up.
+------------------------------------------------------------------------ */
+const IWE_API_BASE = ""; // <-- paste your Render backend URL here
+
+const IWE_PHONE_PRIMARY = "09613-244344";
+const IWE_PHONE_TEL = "+8809613244344"; // used for tel: links
+
+/* ---------- Demo/fallback catalog (used until IWE_API_BASE is set, or
+   if the live API can't be reached) ---------- */
+const IWE_DEMO_PRODUCTS = [
   {id:"tv-01",cat:"tv",icon:"📺",brand:"Samsung",name:'Samsung 55" Crystal 4K UHD Smart TV',price:68500,was:79900,rating:4.6,stock:true},
   {id:"tv-02",cat:"tv",icon:"📺",brand:"Walton",name:'Walton 43" Full HD Android TV',price:29900,was:null,rating:4.3,stock:true},
   {id:"tv-03",cat:"tv",icon:"📺",brand:"LG",name:'LG 65" NanoCell 4K Smart TV',price:112000,was:129000,rating:4.7,stock:true},
@@ -35,9 +50,51 @@ const IWE_CATEGORIES = [
   {key:"dryer",icon:"🌪️",label:"Dryers"},
 ];
 
+const IWE_ICON_BY_CAT = {
+  tv:"📺", ac:"❄️", fridge:"🧊", washer:"🌀",
+  oven:"🔥", dishwasher:"🍽️", dryer:"🌪️", small:"🔌",
+};
+
+/* ---------- Live product catalog (populated on page load) ---------- */
+let IWE_PRODUCTS_LIVE = [];
+let IWE_USING_DEMO_DATA = true;
+
+async function iweFetchProducts(){
+  if(!IWE_API_BASE){
+    IWE_USING_DEMO_DATA = true;
+    IWE_PRODUCTS_LIVE = IWE_DEMO_PRODUCTS.slice();
+    return IWE_PRODUCTS_LIVE;
+  }
+  try{
+    const res = await fetch(`${IWE_API_BASE}/api/products`);
+    if(!res.ok) throw new Error(`API returned ${res.status}`);
+    const data = await res.json();
+    IWE_PRODUCTS_LIVE = (data.products || []).map(p=>({
+      id: p._id,
+      cat: p.category,
+      brand: p.brand || "",
+      name: p.name,
+      price: p.price,
+      was: p.wasPrice || null,
+      rating: p.rating || 4.5,
+      stock: p.inStock !== false,
+      imageUrl: p.imageUrl || null,
+      icon: IWE_ICON_BY_CAT[p.category] || "📦",
+      featured: !!p.featured,
+    }));
+    IWE_USING_DEMO_DATA = false;
+    return IWE_PRODUCTS_LIVE;
+  }catch(err){
+    console.warn("Could not load live products, showing demo catalog instead:", err.message);
+    IWE_USING_DEMO_DATA = true;
+    IWE_PRODUCTS_LIVE = IWE_DEMO_PRODUCTS.slice();
+    return IWE_PRODUCTS_LIVE;
+  }
+}
+
 /* ---------- Currency ---------- */
 function iweFormatBDT(n){
-  return "৳" + n.toLocaleString("en-IN");
+  return "৳" + Number(n||0).toLocaleString("en-IN");
 }
 
 /* ---------- Cart (localStorage) ---------- */
@@ -79,6 +136,10 @@ function iweUpdateCartBadge(){
     el.textContent = iweCartCount();
   });
 }
+function iweClearCart(){
+  localStorage.removeItem(IWE_CART_KEY);
+  iweUpdateCartBadge();
+}
 
 /* ---------- Toast ---------- */
 function iweToast(msg){
@@ -100,9 +161,12 @@ function iweProductCardHTML(p){
   const priceHTML = p.was
     ? `<span class="now">${iweFormatBDT(p.price)}</span><span class="was">${iweFormatBDT(p.was)}</span>`
     : `<span class="now">${iweFormatBDT(p.price)}</span>`;
+  const media = p.imageUrl
+    ? `<img src="${p.imageUrl}" alt="${p.name}" style="max-height:100%;max-width:100%;object-fit:contain;">`
+    : (p.icon || "📦");
   return `
   <div class="product-card" data-cat="${p.cat}" data-price="${p.price}">
-    <div class="product-media">${stockBadge}${p.icon}</div>
+    <div class="product-media">${stockBadge}${media}</div>
     <div class="product-brand">${p.brand}</div>
     <div class="product-title">${p.name}</div>
     <div class="product-rating">★★★★★ <span style="color:var(--grey-600);">(${p.rating})</span></div>
@@ -125,7 +189,8 @@ function iweRenderCategoryGrid(targetSelector){
 function iweRenderFeaturedProducts(targetSelector, limit=8){
   const el = document.querySelector(targetSelector);
   if(!el) return;
-  const list = IWE_PRODUCTS.filter(p=>p.was).slice(0,limit);
+  const withDeal = IWE_PRODUCTS_LIVE.filter(p=>p.was || p.featured);
+  const list = (withDeal.length ? withDeal : IWE_PRODUCTS_LIVE).slice(0,limit);
   el.innerHTML = list.map(iweProductCardHTML).join("");
 }
 
@@ -137,7 +202,7 @@ function iweRenderShopGrid(targetSelector){
   function draw(){
     const checked = Array.from(document.querySelectorAll(".cat-filter:checked")).map(c=>c.value);
     const sortVal = document.querySelector("#sortSelect") ? document.querySelector("#sortSelect").value : "";
-    let list = IWE_PRODUCTS.slice();
+    let list = IWE_PRODUCTS_LIVE.slice();
     if(checked.length){ list = list.filter(p=>checked.includes(p.cat)); }
     if(sortVal==="price-asc") list.sort((a,b)=>a.price-b.price);
     if(sortVal==="price-desc") list.sort((a,b)=>b.price-a.price);
@@ -172,15 +237,16 @@ function iweRenderCartPage(){
   }
   let subtotal = 0;
   const rows = cart.map(item=>{
-    const p = IWE_PRODUCTS.find(x=>x.id===item.id);
+    const p = IWE_PRODUCTS_LIVE.find(x=>x.id===item.id);
     if(!p) return "";
     const lineTotal = p.price * item.qty;
     subtotal += lineTotal;
+    const media = p.imageUrl ? `<img src="${p.imageUrl}" alt="" style="width:100%;height:100%;object-fit:contain;">` : (p.icon||"📦");
     return `
     <tr>
       <td>
         <div class="cart-item-info">
-          <div class="thumb">${p.icon}</div>
+          <div class="thumb">${media}</div>
           <div>
             <div style="font-weight:600;">${p.name}</div>
             <div style="font-size:.78rem;color:var(--grey-600);">${p.brand}</div>
@@ -200,7 +266,7 @@ function iweRenderCartPage(){
     </tr>`;
   }).join("");
 
-  const delivery = subtotal > 0 ? 0 : 0;
+  const delivery = 0;
   const total = subtotal + delivery;
 
   wrap.innerHTML = `
@@ -216,10 +282,118 @@ function iweRenderCartPage(){
         <div class="summary-row"><span>Subtotal</span><span>${iweFormatBDT(subtotal)}</span></div>
         <div class="summary-row"><span>Delivery</span><span>${delivery===0?"Free":iweFormatBDT(delivery)}</span></div>
         <div class="summary-row total"><span>Total</span><span>${iweFormatBDT(total)}</span></div>
-        <a href="contact.html" class="btn btn-primary btn-block" style="margin-top:16px;">Request Order Callback</a>
-        <p style="font-size:.75rem;color:var(--grey-600);margin-top:10px;">Our team will call to confirm stock, delivery time & payment (Cash on Delivery / bKash / Card).</p>
+
+        <form id="iweCheckoutForm" style="margin-top:18px;">
+          <div class="form-row">
+            <label>Full Name</label>
+            <input type="text" name="customerName" required>
+          </div>
+          <div class="form-row">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" required>
+          </div>
+          <div class="form-row">
+            <label>Delivery Address</label>
+            <textarea name="address" required placeholder="House, road, area, city"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Place Order — Cash on Delivery</button>
+          <p style="font-size:.75rem;color:var(--grey-600);margin-top:10px;">
+            No online payment needed. We'll <strong>call ${IWE_PHONE_PRIMARY}→you</strong> shortly to confirm stock &amp; delivery time before dispatch.
+          </p>
+        </form>
+        <div id="iweOrderResult"></div>
       </div>
     </div>`;
+
+  const form = document.querySelector("#iweCheckoutForm");
+  if(form){
+    form.addEventListener("submit", iweHandleCheckoutSubmit);
+  }
+}
+
+/* ---------- Checkout submit (Cash on Delivery, call to confirm) ---------- */
+async function iweHandleCheckoutSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const resultEl = document.querySelector("#iweOrderResult");
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const cart = iweGetCart();
+
+  if(!cart.length){
+    iweToast("Your basket is empty");
+    return;
+  }
+
+  const payload = {
+    customerName: form.customerName.value,
+    phone: form.phone.value,
+    address: form.address.value,
+    items: cart.map(item=>{
+      const p = IWE_PRODUCTS_LIVE.find(x=>x.id===item.id) || {};
+      return {productId: item.id, name: p.name, price: p.price, qty: item.qty};
+    }),
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Placing order…";
+
+  try{
+    if(!IWE_API_BASE){
+      throw new Error("Backend not configured yet");
+    }
+    const res = await fetch(`${IWE_API_BASE}/api/orders`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if(!res.ok){ throw new Error(data.error || "Could not place order"); }
+
+    iweClearCart();
+    form.style.display = "none";
+    resultEl.innerHTML = `
+      <div style="background:var(--grey-100);border-radius:8px;padding:18px;margin-top:16px;">
+        <p style="font-weight:700;color:var(--navy);margin:0 0 6px;">Order placed! 🎉</p>
+        <p style="font-size:.88rem;margin:0 0 14px;">${data.message || "We'll call you shortly to confirm before dispatch."}</p>
+        <a href="tel:${IWE_PHONE_TEL}" class="btn btn-primary btn-block">Call Us Now to Confirm</a>
+      </div>`;
+  }catch(err){
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Place Order — Cash on Delivery";
+    resultEl.innerHTML = `
+      <div style="background:#fdecea;border-radius:8px;padding:14px;margin-top:14px;color:#8a1f11;font-size:.85rem;">
+        Couldn't submit your order automatically (${err.message}). Please call us directly at
+        <a href="tel:${IWE_PHONE_TEL}" style="font-weight:700;color:#8a1f11;">${IWE_PHONE_PRIMARY}</a> and we'll take your order over the phone.
+      </div>`;
+  }
+}
+
+/* ---------- Hero banner slider (auto-rotating offer slides) ---------- */
+let iweSlideIndex = 0;
+let iweSlideTimer = null;
+
+function iweGoToSlide(i){
+  const slides = document.querySelectorAll(".hero-slide");
+  const dots = document.querySelectorAll(".hero-dot");
+  if(!slides.length) return;
+  iweSlideIndex = (i + slides.length) % slides.length;
+  slides.forEach(s=>s.classList.remove("active"));
+  dots.forEach(d=>d.classList.remove("active"));
+  slides[iweSlideIndex].classList.add("active");
+  if(dots[iweSlideIndex]) dots[iweSlideIndex].classList.add("active");
+  iweRestartSlideTimer();
+}
+
+function iweRestartSlideTimer(){
+  clearInterval(iweSlideTimer);
+  const slides = document.querySelectorAll(".hero-slide");
+  if(slides.length < 2) return;
+  iweSlideTimer = setInterval(()=>{ iweGoToSlide(iweSlideIndex+1); }, 5000);
+}
+
+function iweInitHeroSlider(){
+  if(!document.querySelector(".hero-slider")) return;
+  iweRestartSlideTimer();
 }
 
 /* ---------- Carousel scroll helper ---------- */
@@ -240,15 +414,25 @@ function iweInitNavToggle(){
 }
 
 /* ---------- Init on load ---------- */
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", async ()=>{
   iweUpdateCartBadge();
   iweInitNavToggle();
+  iweInitHeroSlider();
+
+  await iweFetchProducts();
+
   iweRenderCategoryGrid("#categoryGrid");
   iweRenderFeaturedProducts("#featuredGrid");
   iweRenderShopGrid("#shopGrid");
   iweRenderCartPage();
 
-  // Generic form intercept (no backend) -> friendly confirmation
+  if(IWE_USING_DEMO_DATA && IWE_API_BASE){
+    iweToast("Showing demo products — check your backend connection");
+  }
+
+  // Generic form intercept for non-checkout forms (newsletter, contact, quote)
+  // -> friendly confirmation. The basket checkout form is handled separately
+  // by iweHandleCheckoutSubmit above.
   document.querySelectorAll("form[data-iwe-form]").forEach(form=>{
     form.addEventListener("submit", e=>{
       e.preventDefault();

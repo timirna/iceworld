@@ -90,18 +90,53 @@
   </div>
 </div>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="eyebrow"><span class="dot"></span>Authorised Whirlpool Service Centre</div>
-    <h1>Genuine appliances, <em>serviced right</em>, delivered across Dhaka.</h1>
-    <p class="lead">Ice World Electronics is Mirpur's trusted stop for refrigerators, ACs, washing machines and TVs — backed by authorised Whirlpool parts, warranty support and same-week installation.</p>
-    <div class="hero-actions">
-      <a href="shop.html" class="btn btn-primary">Browse appliances</a>
-      <a href="services.html" class="btn btn-secondary">Book a repair</a>
+<!-- Hero: animated sliding offer banner -->
+<div class="hero-slider" id="heroSlider">
+  <button class="hero-slider-arrow prev" onclick="iweGoToSlide(iweSlideIndex-1)">‹</button>
+  <button class="hero-slider-arrow next" onclick="iweGoToSlide(iweSlideIndex+1)">›</button>
+
+  <div class="hero-slide slide-a active" data-slide="0">
+    <div class="container hero-inner">
+      <div class="eyebrow"><span class="dot"></span>Authorised Whirlpool Service Centre</div>
+      <h1>Genuine appliances, <em>serviced right</em>, delivered across Dhaka.</h1>
+      <p class="lead">Ice World Electronics is Mirpur's trusted stop for refrigerators, ACs, washing machines and TVs — backed by authorised Whirlpool parts, warranty support and same-week installation.</p>
+      <div class="hero-actions">
+        <a href="shop.html" class="btn btn-primary">Browse appliances</a>
+        <a href="services.html" class="btn btn-secondary">Book a repair</a>
+      </div>
     </div>
   </div>
-</section>
+
+  <div class="hero-slide slide-b" data-slide="1">
+    <div class="container hero-inner">
+      <span class="deal-tag">Limited Time — Save up to 25%</span>
+      <h1>Beat the heat with <em>inverter ACs</em> from ৳38,900.</h1>
+      <p class="lead">Split &amp; inverter air conditioners from General, Gree &amp; Walton — free installation included on every unit this week only.</p>
+      <div class="hero-actions">
+        <a href="shop.html?cat=ac" class="btn btn-primary">Shop AC Deals</a>
+        <a href="shop.html" class="btn btn-secondary">View all offers</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide slide-c" data-slide="2">
+    <div class="container hero-inner">
+      <span class="deal-tag">This Week Only — Save up to ৳11,400</span>
+      <h1>4K Smart TVs at their <em>lowest prices</em> this season.</h1>
+      <p class="lead">Samsung Crystal 4K &amp; LG NanoCell TVs, now with free wall-mount installation across Dhaka.</p>
+      <div class="hero-actions">
+        <a href="shop.html?cat=tv" class="btn btn-primary">Shop TV Deals</a>
+        <a href="services.html" class="btn btn-secondary">Book a repair</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="iweGoToSlide(0)"></button>
+    <button class="hero-dot" onclick="iweGoToSlide(1)"></button>
+    <button class="hero-dot" onclick="iweGoToSlide(2)"></button>
+  </div>
+</div>
 
 <!-- Trust strip -->
 <div class="trust-strip">
@@ -185,43 +220,47 @@
   </div>
 </section>
 
-<!-- Top brand deals (second carousel) -->
+<!-- Top sale products (second carousel) -->
 <section class="section">
   <div class="container">
-    <div class="section-head"><h2>Top Brand Deals</h2></div>
+    <div class="section-head"><h2>Top Sale Products</h2></div>
     <div class="carousel-wrap">
       <button class="carousel-arrow prev" onclick="iweScrollCarousel('brandTrack',-1)">‹</button>
       <div class="carousel-track" id="brandTrack">
         <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
           <div class="brand-header">BOSCH</div>
           <div class="brand-media">🍽️</div>
           <div class="brand-body">
-            <p class="headline">12-Place Dishwashers</p>
-            <p class="sub">Get up to 15% off now!</p>
+            <p class="headline">12-Place Dishwasher</p>
+            <p class="sub">৳74,900 — 15% off, 80+ sold this month</p>
           </div>
         </div>
         <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
           <div class="brand-header">WHIRLPOOL</div>
           <div class="brand-media">🌪️</div>
           <div class="brand-body">
-            <p class="headline">7kg Tumble Dryers</p>
-            <p class="sub">Save ৳4,400 this week</p>
+            <p class="headline">7kg Tumble Dryer</p>
+            <p class="sub">৳45,500 — save ৳4,400, top rated 4.3★</p>
           </div>
         </div>
         <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
           <div class="brand-header">MIYAKO</div>
           <div class="brand-media">🔌</div>
           <div class="brand-body">
-            <p class="headline">Kitchen small appliances</p>
-            <p class="sub">Blenders &amp; kettles from ৳1,850</p>
+            <p class="headline">Blender &amp; Grinder Combo</p>
+            <p class="sub">৳3,450 — 200+ sold, customer favourite</p>
           </div>
         </div>
         <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
           <div class="brand-header">JAMUNA</div>
           <div class="brand-media">🧊</div>
           <div class="brand-body">
-            <p class="headline">Side-by-Side Fridges</p>
-            <p class="sub">Save up to ৳6,500 &amp; free recycling!</p>
+            <p class="headline">320L Side-by-Side Fridge</p>
+            <p class="sub">৳69,500 — save ৳6,500 &amp; free recycling</p>
           </div>
         </div>
       </div>
