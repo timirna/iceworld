@@ -388,7 +388,7 @@ function iweRestartSlideTimer(){
   clearInterval(iweSlideTimer);
   const slides = document.querySelectorAll(".hero-slide");
   if(slides.length < 2) return;
-  iweSlideTimer = setInterval(()=>{ iweGoToSlide(iweSlideIndex+1); }, 5000);
+  iweSlideTimer = setInterval(()=>{ iweGoToSlide(iweSlideIndex+1); }, 2500);
 }
 
 function iweInitHeroSlider(){

@@ -96,6 +96,7 @@
   <button class="hero-slider-arrow next" onclick="iweGoToSlide(iweSlideIndex+1)">›</button>
 
   <div class="hero-slide slide-a active" data-slide="0">
+    <img class="hero-slide-media" src="https://picsum.photos/seed/iwe-appliances/640/480" alt="">
     <div class="container hero-inner">
       <div class="eyebrow"><span class="dot"></span>Authorised Whirlpool Service Centre</div>
       <h1>Genuine appliances, <em>serviced right</em>, delivered across Dhaka.</h1>
@@ -108,6 +109,7 @@
   </div>
 
   <div class="hero-slide slide-b" data-slide="1">
+    <img class="hero-slide-media" src="https://picsum.photos/seed/iwe-ac-sale/640/480" alt="">
     <div class="container hero-inner">
       <span class="deal-tag">Limited Time — Save up to 25%</span>
       <h1>Beat the heat with <em>inverter ACs</em> from ৳38,900.</h1>
@@ -120,6 +122,7 @@
   </div>
 
   <div class="hero-slide slide-c" data-slide="2">
+    <img class="hero-slide-media" src="https://picsum.photos/seed/iwe-tv-sale/640/480" alt="">
     <div class="container hero-inner">
       <span class="deal-tag">This Week Only — Save up to ৳11,400</span>
       <h1>4K Smart TVs at their <em>lowest prices</em> this season.</h1>
@@ -160,17 +163,51 @@
   </div>
 </div>
 
-<!-- Shop by category (carousel) -->
+<!-- Top sale products -->
 <section class="section">
   <div class="container">
-    <div class="section-head">
-      <h2>Shop Deals</h2>
-      <a href="shop.html" class="link">View all products →</a>
-    </div>
+    <div class="section-head"><h2>Top Sale Products</h2></div>
     <div class="carousel-wrap">
-      <button class="carousel-arrow prev" onclick="iweScrollCarousel('categoryGrid',-1)">‹</button>
-      <div class="carousel-track cat-grid" id="categoryGrid"></div>
-      <button class="carousel-arrow next" onclick="iweScrollCarousel('categoryGrid',1)">›</button>
+      <button class="carousel-arrow prev" onclick="iweScrollCarousel('brandTrack',-1)">‹</button>
+      <div class="carousel-track" id="brandTrack">
+        <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
+          <div class="brand-header">BOSCH</div>
+          <div class="brand-media">🍽️</div>
+          <div class="brand-body">
+            <p class="headline">12-Place Dishwasher</p>
+            <p class="sub">৳74,900 — 15% off, 80+ sold this month</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
+          <div class="brand-header">WHIRLPOOL</div>
+          <div class="brand-media">🌪️</div>
+          <div class="brand-body">
+            <p class="headline">7kg Tumble Dryer</p>
+            <p class="sub">৳45,500 — save ৳4,400, top rated 4.3★</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
+          <div class="brand-header">MIYAKO</div>
+          <div class="brand-media">🔌</div>
+          <div class="brand-body">
+            <p class="headline">Blender &amp; Grinder Combo</p>
+            <p class="sub">৳3,450 — 200+ sold, customer favourite</p>
+          </div>
+        </div>
+        <div class="brand-card">
+          <span class="sale-badge">🔥 Best Seller</span>
+          <div class="brand-header">JAMUNA</div>
+          <div class="brand-media">🧊</div>
+          <div class="brand-body">
+            <p class="headline">320L Side-by-Side Fridge</p>
+            <p class="sub">৳69,500 — save ৳6,500 &amp; free recycling</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-arrow next" onclick="iweScrollCarousel('brandTrack',1)">›</button>
     </div>
   </div>
 </section>
@@ -220,55 +257,6 @@
   </div>
 </section>
 
-<!-- Top sale products (second carousel) -->
-<section class="section">
-  <div class="container">
-    <div class="section-head"><h2>Top Sale Products</h2></div>
-    <div class="carousel-wrap">
-      <button class="carousel-arrow prev" onclick="iweScrollCarousel('brandTrack',-1)">‹</button>
-      <div class="carousel-track" id="brandTrack">
-        <div class="brand-card">
-          <span class="sale-badge">🔥 Best Seller</span>
-          <div class="brand-header">BOSCH</div>
-          <div class="brand-media">🍽️</div>
-          <div class="brand-body">
-            <p class="headline">12-Place Dishwasher</p>
-            <p class="sub">৳74,900 — 15% off, 80+ sold this month</p>
-          </div>
-        </div>
-        <div class="brand-card">
-          <span class="sale-badge">🔥 Best Seller</span>
-          <div class="brand-header">WHIRLPOOL</div>
-          <div class="brand-media">🌪️</div>
-          <div class="brand-body">
-            <p class="headline">7kg Tumble Dryer</p>
-            <p class="sub">৳45,500 — save ৳4,400, top rated 4.3★</p>
-          </div>
-        </div>
-        <div class="brand-card">
-          <span class="sale-badge">🔥 Best Seller</span>
-          <div class="brand-header">MIYAKO</div>
-          <div class="brand-media">🔌</div>
-          <div class="brand-body">
-            <p class="headline">Blender &amp; Grinder Combo</p>
-            <p class="sub">৳3,450 — 200+ sold, customer favourite</p>
-          </div>
-        </div>
-        <div class="brand-card">
-          <span class="sale-badge">🔥 Best Seller</span>
-          <div class="brand-header">JAMUNA</div>
-          <div class="brand-media">🧊</div>
-          <div class="brand-body">
-            <p class="headline">320L Side-by-Side Fridge</p>
-            <p class="sub">৳69,500 — save ৳6,500 &amp; free recycling</p>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-arrow next" onclick="iweScrollCarousel('brandTrack',1)">›</button>
-    </div>
-  </div>
-</section>
-
 <!-- Featured products -->
 <section class="section section-grey">
   <div class="container">
@@ -277,41 +265,6 @@
       <a href="shop.html" class="link">Shop all deals →</a>
     </div>
     <div class="product-grid" id="featuredGrid"></div>
-  </div>
-</section>
-
-<!-- Featured collections -->
-<section class="section">
-  <div class="container">
-    <div class="section-head"><h2>Featured Collections</h2></div>
-    <div class="featured-grid">
-      <div class="featured-card">
-        <div class="fc-head">
-          <div class="dot">🛠️</div>
-          <div>
-            <h4>Book a Repair Today</h4>
-            <p>Same-day service across Dhaka</p>
-          </div>
-        </div>
-        <div class="fc-thumbs">
-          <div class="fc-thumb"><div class="fc-icon">❄️</div><span>AC Repair</span></div>
-          <div class="fc-thumb"><div class="fc-icon">🧊</div><span>Fridge Repair</span></div>
-        </div>
-      </div>
-      <div class="featured-card">
-        <div class="fc-head">
-          <div class="dot">🆕</div>
-          <div>
-            <h4>New Arrivals</h4>
-            <p>The latest electronics just landed</p>
-          </div>
-        </div>
-        <div class="fc-thumbs">
-          <div class="fc-thumb"><div class="fc-icon">📺</div><span>4K Smart TVs</span></div>
-          <div class="fc-thumb"><div class="fc-icon">🌀</div><span>Inverter Washers</span></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
